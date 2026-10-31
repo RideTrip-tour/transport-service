@@ -2,7 +2,10 @@ import logging.config
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
-from internal_middleware import build_user_context_middleware
+from internal_middleware import (
+    build_request_id_middleware,
+    build_user_context_middleware,
+)
 
 from app.clients.gateway_client import GatewayClient
 from app.routes.admin_routes import router as admin_router
@@ -34,6 +37,7 @@ def create_app() -> FastAPI:
         lifespan=lifespan,
     )
 
+    app.middleware("http")(build_request_id_middleware(logger=logger))
     app.middleware("http")(build_user_context_middleware(logger=logger))
 
     @app.get(f"/api/{settings.app_name.split('-')[0]}/health")
