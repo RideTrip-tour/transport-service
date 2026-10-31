@@ -1,8 +1,8 @@
 alembic==1.20.1
 asyncpg==0.32.0
 fastapi==0.162.0
-initial-client @ git+https://git@github.com/RideTrip-tour/internal_client.git@main
-internal-middleware @ git+https://git@github.com/RideTrip-tour/middlewares.git@main
+internal-middleware @ git+https://github.com/RideTrip-tour/middlewares.git@a7af65f6a7d0e509691e89e511deee36c140d0d0
+initial-client @ git+https://github.com/RideTrip-tour/internal_client.git@126ac55a179faddb9daffa6d42adc5f74b16523c
 psycopg2-binary==2.9.13
 pydantic-settings==2.16.1
 sqlalchemy==2.1.6
