@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     # =========================
     # Config
     # =========================
-    app_name: str = "transports"
+    app_name: str = "transport"
 
     # =========================
     # Security
