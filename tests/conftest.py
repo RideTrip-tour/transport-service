@@ -15,7 +15,7 @@ if str(ROOT) not in sys.path:
 os.environ["DEBUG"] = "false"
 
 
-from app.clients.gateway_client import GatewayClient
+from app.clients.client import GatewayClient
 from main import create_app
 
 
