@@ -27,6 +27,8 @@ fastapi==0.162.0
     # via
     #   -r requirements.in
     #   internal-middleware
+greenlet==3.5.6
+    # via sqlalchemy
 h11==0.16.0
     # via
     #   httpcore
@@ -36,12 +38,12 @@ httpcore==1.0.9
 httptools==0.9.0
     # via uvicorn
 httpx==0.28.1
-    # via initial-client
+    # via internal-client
 idna==3.20
     # via
     #   anyio
     #   httpx
-initial-client @ git+https://github.com/RideTrip-tour/internal_client.git@126ac55a179faddb9daffa6d42adc5f74b16523c
+internal-client @ git+https://github.com/RideTrip-tour/internal_client.git@02beab80fa79eb6533f2be4f822e455b9f996cfe
     # via -r requirements.in
 internal-middleware @ git+https://github.com/RideTrip-tour/middlewares.git@a7af65f6a7d0e509691e89e511deee36c140d0d0
     # via -r requirements.in
@@ -62,14 +64,14 @@ pydantic-core==2.50.1
 pydantic-settings==2.16.1
     # via -r requirements.in
 pyjwt==2.15.1
-    # via initial-client
+    # via internal-client
 python-dotenv==1.2.4
     # via
     #   pydantic-settings
     #   uvicorn
 pyyaml==6.0.3
     # via uvicorn
-sqlalchemy==2.1.6
+sqlalchemy[asyncio]==2.1.6
     # via
     #   -r requirements.in
     #   alembic
