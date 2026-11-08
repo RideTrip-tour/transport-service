@@ -1,4 +1,4 @@
-from app.clients.gateway_client import GatewayClient
+from app.clients.client import GatewayClient
 
 
 def get_gateway_client() -> GatewayClient:

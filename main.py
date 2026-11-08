@@ -7,8 +7,9 @@ from internal_middleware import (
     build_user_context_middleware,
 )
 
-from app.clients.gateway_client import GatewayClient
+from app.clients.client import GatewayClient
 from app.routes.admin_routes import router as admin_router
+from app.routes.references_routes import router as references_router
 from app.routes.transport_routes import router as transport_router
 from app.utils.logging import LOGGING_CONFIG
 from config import settings
@@ -44,9 +45,8 @@ def create_app() -> FastAPI:
     async def health_check():
         return {"status": "ok"}
 
-    # Подключаем пользовательские роутеры
     app.include_router(transport_router)
-    # Подключаем администратоские роутеры
+    app.include_router(references_router)
     app.include_router(admin_router)
 
     return app
