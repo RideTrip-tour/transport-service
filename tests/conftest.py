@@ -15,7 +15,7 @@ if str(ROOT) not in sys.path:
 os.environ["DEBUG"] = "false"
 
 
-from app.clients.client import GatewayClient
+from app.clients.client import GatewayClient, user_claims
 from main import create_app
 
 
@@ -32,6 +32,16 @@ def db():
     db.commit = AsyncMock()
     db.delete = AsyncMock()
     return db
+
+
+@pytest.fixture
+def session():
+    session = MagicMock()
+    session.__aenter__ = AsyncMock(return_value=session)
+    session.__aexit__ = AsyncMock(return_value=None)
+    session.rollback = AsyncMock()
+    session.close = AsyncMock()
+    return session
 
 
 @pytest_asyncio.fixture
@@ -66,3 +76,13 @@ def redis_client():
 @pytest.fixture
 def gateway_client():
     return GatewayClient()
+
+
+@pytest.fixture
+def user_claims_context():
+    claims = {"sub": "user-id", "is_active": True}
+    token = user_claims.set(claims)
+
+    yield claims
+
+    user_claims.reset(token)
